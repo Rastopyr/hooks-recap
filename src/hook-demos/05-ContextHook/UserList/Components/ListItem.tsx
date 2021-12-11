@@ -1,23 +1,20 @@
 import React from "react";
-import { DefaultListItem, DefaultListItemProps } from "./DefaultListItem";
-import { EditableListItem, EditableListItemProps } from "./EditablelistItem";
+import { User } from "../types";
+import { DefaultListItem } from "./DefaultListItem";
+import { EditableListItem } from "./EditablelistItem";
 
-export type ListItemProps = DefaultListItemProps &
-  EditableListItemProps & {
+export type ListItemProps = {
+    readonly user: User;
     readonly editUserId: number | undefined;
   };
 
 export const ListItem: React.FC<ListItemProps> = ({
   user,
-  editUserId,
-  onEdit,
-  onSave,
-  onCancelEdit,
-  onDelete
+  editUserId
 }) => {
   return user.id === editUserId ? (
-    <EditableListItem user={user} onSave={onSave} onCancelEdit={onCancelEdit} />
+    <EditableListItem user={user} />
   ) : (
-    <DefaultListItem user={user} onEdit={onEdit} onDelete={onDelete} />
+    <DefaultListItem user={user} />
   );
 };

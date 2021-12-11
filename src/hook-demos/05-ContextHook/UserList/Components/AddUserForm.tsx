@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useListState } from "../context";
+import { createUser } from "../reducer";
 
 type AddUserFormProps = {
   readonly onCreate: (username: string) => void;
 };
 
-export const AddUserForm: React.FC<AddUserFormProps> = ({ onCreate }) => {
+export const AddUserForm: React.FC = () => {
+  const [_, actions] = useListState();
+
+  return <AddUserFormView onCreate={actions.createUser} />
+};
+
+
+export const AddUserFormView: React.FC<AddUserFormProps> = ({ onCreate }) => {
   const [newUsername, setNewUsername] = useState("");
   return (
     <div className="py-3 d-flex">
@@ -29,3 +38,5 @@ export const AddUserForm: React.FC<AddUserFormProps> = ({ onCreate }) => {
     </div>
   );
 };
+
+

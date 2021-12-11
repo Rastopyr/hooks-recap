@@ -1,3 +1,4 @@
+import { useListState } from "../context";
 import { User } from "../types";
 
 export type DefaultListItemProps = {
@@ -6,7 +7,17 @@ export type DefaultListItemProps = {
   readonly onDelete: (userId: number) => void;
 };
 
-export const DefaultListItem: React.FC<DefaultListItemProps> = ({
+export const DefaultListItem: React.FC<Pick<DefaultListItemProps, "user">> = ({ user }) => {
+  const [_, actions] = useListState();
+
+  return <DefaultListItemView
+    user={user}
+    onDelete={actions.removeUser}
+    onEdit={actions.editUser}
+  />
+};
+
+export const DefaultListItemView: React.FC<DefaultListItemProps> = ({
   user,
   onDelete,
   onEdit

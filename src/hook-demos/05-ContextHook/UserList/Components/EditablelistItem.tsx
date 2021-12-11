@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useListState } from "../context";
 import { User } from "../types";
 
 export type EditableListItemProps = {
@@ -7,7 +8,17 @@ export type EditableListItemProps = {
   readonly onCancelEdit: (userId: number) => void;
 };
 
-export const EditableListItem: React.FC<EditableListItemProps> = ({
+export const EditableListItem: React.FC<Pick<EditableListItemProps, "user">> = ({ user }) => {
+  const [_, actions] = useListState();
+
+  return <EditableListItemView
+    user={user}
+    onSave={actions.updateUser}
+    onCancelEdit={actions.cancelEditUser}
+  />
+} 
+
+export const EditableListItemView: React.FC<EditableListItemProps> = ({
   user,
   onSave,
   onCancelEdit

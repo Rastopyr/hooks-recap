@@ -1,1 +1,0 @@
-const UserListContext = React.createContext();
