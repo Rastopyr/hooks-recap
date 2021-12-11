@@ -8,16 +8,6 @@ export type EditableListItemProps = {
   readonly onCancelEdit: (userId: number) => void;
 };
 
-export const EditableListItem: React.FC<Pick<EditableListItemProps, "user">> = ({ user }) => {
-  const [_, actions] = useListState();
-
-  return <EditableListItemView
-    user={user}
-    onSave={actions.updateUser}
-    onCancelEdit={actions.cancelEditUser}
-  />
-} 
-
 export const EditableListItemView: React.FC<EditableListItemProps> = ({
   user,
   onSave,
@@ -67,4 +57,14 @@ export const EditableListItemView: React.FC<EditableListItemProps> = ({
       </button>
     </li>
   );
+};
+
+export const EditableListItem: React.FC<Pick<EditableListItemProps, "user">> = ({ user }) => {
+  const [_, actions] = useListState();
+
+  return <EditableListItemView
+    user={user}
+    onSave={actions.updateUser}
+    onCancelEdit={actions.cancelEditUser}
+  />
 };

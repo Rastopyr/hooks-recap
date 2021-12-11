@@ -6,12 +6,6 @@ type AddUserFormProps = {
   readonly onCreate: (username: string) => void;
 };
 
-export const AddUserForm: React.FC = () => {
-  const [_, actions] = useListState();
-
-  return <AddUserFormView onCreate={actions.createUser} />
-};
-
 
 export const AddUserFormView: React.FC<AddUserFormProps> = ({ onCreate }) => {
   const [newUsername, setNewUsername] = useState("");
@@ -39,4 +33,8 @@ export const AddUserFormView: React.FC<AddUserFormProps> = ({ onCreate }) => {
   );
 };
 
+export const AddUserForm: React.FC = () => {
+  const [_, actions] = useListState();
 
+  return <AddUserFormView onCreate={actions.createUser} />
+};

@@ -7,16 +7,6 @@ export type DefaultListItemProps = {
   readonly onDelete: (userId: number) => void;
 };
 
-export const DefaultListItem: React.FC<Pick<DefaultListItemProps, "user">> = ({ user }) => {
-  const [_, actions] = useListState();
-
-  return <DefaultListItemView
-    user={user}
-    onDelete={actions.removeUser}
-    onEdit={actions.editUser}
-  />
-};
-
 export const DefaultListItemView: React.FC<DefaultListItemProps> = ({
   user,
   onDelete,
@@ -63,4 +53,14 @@ export const DefaultListItemView: React.FC<DefaultListItemProps> = ({
       </button>
     </li>
   );
+};
+
+export const DefaultListItem: React.FC<Pick<DefaultListItemProps, "user">> = ({ user }) => {
+  const [_, actions] = useListState();
+
+  return <DefaultListItemView
+    user={user}
+    onDelete={actions.removeUser}
+    onEdit={actions.editUser}
+  />
 };

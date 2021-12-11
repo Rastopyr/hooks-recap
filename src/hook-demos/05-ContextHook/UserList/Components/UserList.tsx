@@ -7,17 +7,6 @@ export type ListProps = {
   readonly users: readonly User[];
 } & Omit<ListItemProps, "user">;
 
-
-export const List: React.FC = () => {
-  const [state] = useListState();
-
-  return <ListView
-    users={state.users}
-    editUserId={state.editUserId}
-  />
-};
-
-
 export const ListView: React.FC<ListProps> = React.memo(
   ({ users, editUserId }) => {
     return (
@@ -35,3 +24,12 @@ export const ListView: React.FC<ListProps> = React.memo(
     );
   }
 );
+
+export const List: React.FC = () => {
+  const [state] = useListState();
+
+  return <ListView
+    users={state.users}
+    editUserId={state.editUserId}
+  />
+};
