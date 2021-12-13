@@ -65,7 +65,7 @@ export const userListReducer = (
   }
 };
 
-export const createUser = (dispatch: Dispatcher) => (username: string): void =>
+export const addUser = (dispatch: Dispatcher) => (username: string): void =>
   dispatch({
     type: UserListEventType.AddUser,
     username
