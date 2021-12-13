@@ -3,11 +3,11 @@ import { useListState } from "../context";
 import { createUser } from "../reducer";
 
 type AddUserFormProps = {
-  readonly onCreate: (username: string) => void;
+  readonly onAddUser: (username: string) => void;
 };
 
 
-export const AddUserFormView: React.FC<AddUserFormProps> = ({ onCreate }) => {
+export const AddUserFormView: React.FC<AddUserFormProps> = ({ onAddUser }) => {
   const [newUsername, setNewUsername] = useState("");
   return (
     <div className="py-3 d-flex">
@@ -23,7 +23,7 @@ export const AddUserFormView: React.FC<AddUserFormProps> = ({ onCreate }) => {
         style={{ cursor: "pointer" }}
         className="btn btn-primary btn-sm ms-3"
         onClick={() => {
-          onCreate(newUsername);
+          onAddUser(newUsername);
           setNewUsername("");
         }}
       >
@@ -36,5 +36,5 @@ export const AddUserFormView: React.FC<AddUserFormProps> = ({ onCreate }) => {
 export const AddUserForm: React.FC = () => {
   const [_, actions] = useListState();
 
-  return <AddUserFormView onCreate={actions.createUser} />
+  return <AddUserFormView onAddUser={actions.addUser} />
 };

@@ -20,8 +20,6 @@ const ComplexList = () => {
   );
 };
 
-
-
 export const UserListProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(userListReducer, initialState);
 
